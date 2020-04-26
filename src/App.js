@@ -1,26 +1,41 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import Header from "components/Header";
+import LandingWrapper from "components/LandingWrapper";
+import $ from "jquery";
+import HeroContent from "components/HeroContent";
+import QualitiveScreen from "components/QualitiveScreen";
+import Speciality from "components/Speciality";
+import Team from "components/Team";
+import Blogs from "components/Blogs";
+import Footer from "components/Footer";
+import { blogs, whyCooseUs } from "data";
 
-function App() {
+const App = () => {
+  useEffect(() => {
+    document.addEventListener(
+      "scroll",
+      function () {
+        if ($(window).scrollTop() > 400) {
+          $(".go-top").fadeIn(600);
+        } else {
+          $(".go-top").fadeOut(600);
+        }
+      },
+      []
+    );
+  });
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Header />
+      <LandingWrapper />
+      <HeroContent contents={whyCooseUs} />
+      <QualitiveScreen />
+      <Speciality />
+      <Team />
+      <Blogs blogs={blogs} />
+      <Footer />
+    </>
   );
-}
+};
 
 export default App;
